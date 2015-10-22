@@ -1,0 +1,29 @@
+USING PERIODIC COMMIT 5000
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/nicolewhite/neo4j-lastfm/master/2014-09-24_nmwhite0131_scrobbles.csv'
+AS line
+MERGE (u:User{name: line.user })
+MERGE (a:Artist{name: line.artist })
+MERGE (s:Song{name: line.track })
+MERGE (a) -[:RECORDED]->(s)
+MERGE (s) -[:RECORDED_BY]->(a)
+CREATE (u)-[:LIKES {lastListen: toINT(line.timestamp), date:line.date}]->(s);
+
+USING PERIODIC COMMIT 5000
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/nicolewhite/neo4j-lastfm/master/2014-09-24_smooligans_scrobbles.csv'
+AS line
+MERGE (u:User{name: line.user })
+MERGE (a:Artist{name: line.artist })
+MERGE (s:Song{name: line.track })
+MERGE (a) -[:RECORDED]->(s)
+MERGE (s) -[:RECORDED_BY]->(a)
+CREATE (u)-[:LIKES {lastListen: toINT(line.timestamp), date:line.date}]->(s);
+
+USING PERIODIC COMMIT 5000
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/nicolewhite/neo4j-lastfm/master/2014-09-26_aaronsrun_scrobbles.csv'
+AS line
+MERGE (u:User{name: line.user })
+MERGE (a:Artist{name: line.artist })
+MERGE (s:Song{name: line.track })
+MERGE (a) -[:RECORDED]->(s)
+MERGE (s) -[:RECORDED_BY]->(a)
+CREATE (u)-[:LIKES {lastListen: toINT(line.timestamp), date:line.date}]->(s);

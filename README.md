@@ -2,6 +2,7 @@
 
 ## Prerequisites
 - vagrant
+- virtualbox
 
 ## Running instructions
 
